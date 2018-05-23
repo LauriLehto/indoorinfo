@@ -14,7 +14,7 @@ class DeviceUsage extends Component {
             equipment_id:'194',
             timePart:'day',
             startDateTime: '2018-04-16T00:00:00.000000Z',
-            endDateTime: '2018-04-29T00:00:00.000000Z'
+            endDateTime: '2018-04-30T00:00:00.000000Z'
         }
     }
 
