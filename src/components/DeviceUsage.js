@@ -35,7 +35,6 @@ class DeviceUsage extends Component {
     utilizationToData(jsonData) {
         let data = []
         let days = []
-        // console.log(jsonData);
         jsonData.map(device => data.push(device.utilization))
         this.setState({data});
         jsonData.map(device => days.push(device.timePart))

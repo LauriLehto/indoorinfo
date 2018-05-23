@@ -39,7 +39,6 @@ class CategoryUsage extends Component {
     }
 
     getUtilization({id, name}) {
-        console.log(name)
         this.setState( prevState => ({
             devices: [...prevState.devices, name]
         }))
@@ -61,7 +60,6 @@ class CategoryUsage extends Component {
         if(responseData[0]){
             utilization = responseData[0].utilization
         }
-        console.log(utilization)
         this.setState(prevState => ({ 
             data: [...prevState.data, utilization ]
         }))
