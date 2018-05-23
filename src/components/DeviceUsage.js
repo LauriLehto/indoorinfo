@@ -35,7 +35,7 @@ class DeviceUsage extends Component {
     utilizationToData(jsonData) {
         let data = []
         let days = []
-        console.log(jsonData);
+        // console.log(jsonData);
         jsonData.map(device => data.push(device.utilization))
         this.setState({data});
         jsonData.map(device => days.push(device.timePart))
@@ -48,17 +48,24 @@ class DeviceUsage extends Component {
     }
 
     render () {
-        let { data,title, days } = this.state;
+        let { data, title, days, equipment_id } = this.state;
 
         let options = {
                 chart: {
                     type: 'bar'
                 },
                 title: {
-                  text: title
+                  text: title + ' / ' + equipment_id
                 },
                 xAxis: {
                     categories: days
+                },
+                yAxis: {
+                    labels: {
+                        formatter: function() {
+                            return Math.round( this.value * 100 ) + ' %';
+                        }
+                    },
                 },
                 series: [
                   {data}
