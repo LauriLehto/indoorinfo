@@ -9,15 +9,18 @@ class DeviceUsage extends Component {
 
         this.state = {
             data:[],
+            days:[],
             title:'Device Usage',
             equipment_id:'194',
-            timePart:'day'
+            timePart:'day',
+            startDateTime: '2018-04-16T00:00:00.000000Z',
+            endDateTime: '2018-04-29T00:00:00.000000Z'
         }
     }
 
     getUtilization() {
-        let { equipment_id, timePart } = this.state
-        let url= `https://bubvn4vsm7.execute-api.eu-west-1.amazonaws.com/dev/utilization?startDatetime=2018-04-16T00:00:00.000000Z&endDatetime=2018-04-29T00:00:00.000000Z&groupBy=timePart,equipment_id&timePart=${timePart}&metric=utilization&equipment_id=${equipment_id}`
+        let { equipment_id, timePart, startDateTime, endDateTime } = this.state
+        let url= `https://bubvn4vsm7.execute-api.eu-west-1.amazonaws.com/dev/utilization?startDatetime=${startDateTime}&endDatetime=${endDateTime}&groupBy=timePart,equipment_id&timePart=${timePart}&metric=utilization&equipment_id=${equipment_id}`
    
         let headers = new Headers();
         headers.append('Authorization', 'Bearer ' + token);
@@ -31,8 +34,13 @@ class DeviceUsage extends Component {
 
     utilizationToData(jsonData) {
         let data = []
+        let days = []
+        console.log(jsonData);
         jsonData.map(device => data.push(device.utilization))
         this.setState({data});
+        jsonData.map(device => days.push(device.timePart))
+        this.setState({days})
+        
     }
 
     componentWillMount() {
@@ -40,11 +48,17 @@ class DeviceUsage extends Component {
     }
 
     render () {
-        let { data,title } = this.state;
+        let { data,title, days } = this.state;
 
         let options = {
+                chart: {
+                    type: 'bar'
+                },
                 title: {
                   text: title
+                },
+                xAxis: {
+                    categories: days
                 },
                 series: [
                   {data}
