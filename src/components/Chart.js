@@ -13,7 +13,6 @@ import HighchartsReact from 'highcharts-react-official'
 
 function Charts (props) {
   let {options} = props;
-  console.log(options);
   return (<div>
     <HighchartsReact
       highcharts={Highcharts}
