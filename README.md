@@ -1,1 +1,2 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# This repo is a work sample I did in one day for a startup company looking an junior web developer.
+---
